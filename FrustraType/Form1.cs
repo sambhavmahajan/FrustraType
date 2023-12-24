@@ -6,6 +6,12 @@ namespace FrustraType
         {
             InitializeComponent();
         }
+        public Form1(string name)
+        {
+            InitializeComponent();
+            richTextBox1.Text = File.ReadAllText(name);
+            publicVariables.Path = name;
+        }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -13,12 +19,13 @@ namespace FrustraType
         }
         private bool save()
         {
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            if (!publicVariables.isSaved && publicVariables.Path.Length == 0)
             {
-                saveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
-                saveFileDialog.Title = "Save Text File";
-                if (!publicVariables.isSaved && publicVariables.Path.Length==0)
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
+                    saveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+                    saveFileDialog.Title = "Save Text File";
+
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         string filePath = saveFileDialog.FileName;
@@ -33,25 +40,24 @@ namespace FrustraType
                             return false;
                         }
                     }
-                    else return false;
-                }
                 else
-                {
-                    try
                     {
-                        File.WriteAllText(publicVariables.Path, richTextBox1.Text);
-                        MessageBox.Show("File saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Error saving file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
+                        try
+                        {
+                            File.WriteAllText(publicVariables.Path, richTextBox1.Text);
+                            MessageBox.Show("File saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error saving file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return false;
+                        }
                     }
                 }
             }
             return true;
         }
-        private bool open()
+        public bool Open()
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
@@ -111,20 +117,25 @@ namespace FrustraType
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!publicVariables.isSaved || publicVariables.Path.Length>0)
+            if (!publicVariables.isSaved || publicVariables.Path.Length > 0)
             {
                 DialogResult result = MessageBox.Show("Do you want to save the file before opening a new file?", "Save File", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (save())
                 {
-                    open();  
+                    Open();
                 }
             }
-            else open();
+            else Open();
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             publicVariables.isSaved = false;
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            save();
         }
     }
     public static class publicVariables
