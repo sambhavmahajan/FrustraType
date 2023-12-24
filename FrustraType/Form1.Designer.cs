@@ -32,11 +32,13 @@
             fileToolStripMenuItem = new ToolStripMenuItem();
             newToolStripMenuItem = new ToolStripMenuItem();
             openToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator1 = new ToolStripSeparator();
             recentToolStripMenuItem = new ToolStripMenuItem();
             toolStripComboBox1 = new ToolStripComboBox();
-            toolStripSeparator1 = new ToolStripSeparator();
-            exitToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator2 = new ToolStripSeparator();
+            exitToolStripMenuItem = new ToolStripMenuItem();
+            richTextBox1 = new RichTextBox();
+            statusStrip1 = new StatusStrip();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -59,20 +61,25 @@
             // newToolStripMenuItem
             // 
             newToolStripMenuItem.Name = "newToolStripMenuItem";
-            newToolStripMenuItem.Size = new Size(110, 22);
+            newToolStripMenuItem.Size = new Size(180, 22);
             newToolStripMenuItem.Text = "New";
             // 
             // openToolStripMenuItem
             // 
             openToolStripMenuItem.Name = "openToolStripMenuItem";
-            openToolStripMenuItem.Size = new Size(110, 22);
+            openToolStripMenuItem.Size = new Size(180, 22);
             openToolStripMenuItem.Text = "Open";
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // recentToolStripMenuItem
             // 
             recentToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripComboBox1 });
             recentToolStripMenuItem.Name = "recentToolStripMenuItem";
-            recentToolStripMenuItem.Size = new Size(110, 22);
+            recentToolStripMenuItem.Size = new Size(180, 22);
             recentToolStripMenuItem.Text = "Recent";
             // 
             // toolStripComboBox1
@@ -80,10 +87,10 @@
             toolStripComboBox1.Name = "toolStripComboBox1";
             toolStripComboBox1.Size = new Size(121, 23);
             // 
-            // toolStripSeparator1
+            // toolStripSeparator2
             // 
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(107, 6);
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
@@ -92,16 +99,30 @@
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
-            // toolStripSeparator2
+            // richTextBox1
             // 
-            toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(107, 6);
+            richTextBox1.Dock = DockStyle.Fill;
+            richTextBox1.Location = new Point(0, 24);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(800, 404);
+            richTextBox1.TabIndex = 1;
+            richTextBox1.Text = "";
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.Location = new Point(0, 428);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(800, 22);
+            statusStrip1.TabIndex = 2;
+            statusStrip1.Text = "statusStrip1";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(richTextBox1);
+            Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "Form1";
@@ -123,5 +144,7 @@
         private ToolStripComboBox toolStripComboBox1;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem exitToolStripMenuItem;
+        private RichTextBox richTextBox1;
+        private StatusStrip statusStrip1;
     }
 }
