@@ -63,6 +63,7 @@
             newToolStripMenuItem.Name = "newToolStripMenuItem";
             newToolStripMenuItem.Size = new Size(180, 22);
             newToolStripMenuItem.Text = "New";
+            newToolStripMenuItem.Click += newToolStripMenuItem_Click;
             // 
             // openToolStripMenuItem
             // 
