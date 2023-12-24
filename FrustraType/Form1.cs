@@ -6,5 +6,15 @@ namespace FrustraType
         {
             InitializeComponent();
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+    }
+    public static class publicVariables
+    {
+        public static bool isSaved = false;
+        public static string Path = "";
     }
 }
