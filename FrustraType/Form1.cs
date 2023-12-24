@@ -40,19 +40,20 @@ namespace FrustraType
                             return false;
                         }
                     }
-                    else
-                    {
-                        try
-                        {
-                            File.WriteAllText(publicVariables.Path, richTextBox1.Text);
-                            MessageBox.Show("File saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"Error saving file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return false;
-                        }
-                    }
+
+                }
+            }
+            else
+            {
+                try
+                {
+                    File.WriteAllText(publicVariables.Path, richTextBox1.Text);
+                    MessageBox.Show("File saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error saving file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
             }
             return true;
@@ -143,6 +144,11 @@ namespace FrustraType
         private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
     public static class publicVariables
