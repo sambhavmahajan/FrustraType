@@ -93,7 +93,6 @@ namespace FrustraType
                             publicVariables.isSaved = true;
                             publicVariables.Path = string.Empty;
                             richTextBox1.Text = "";
-
                         }
                         break;
                     case DialogResult.No:
@@ -114,10 +113,10 @@ namespace FrustraType
         {
             if (!publicVariables.isSaved && publicVariables.Path.Length>0)
             {
+                DialogResult result = MessageBox.Show("Do you want to save the file before opening a new file?", "Save File", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (save())
                 {
-                    open();
-                    
+                    open();  
                 }
             }
             else open();
