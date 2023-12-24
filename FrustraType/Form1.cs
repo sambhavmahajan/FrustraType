@@ -178,6 +178,15 @@ namespace FrustraType
         {
             richTextBox1.SelectAll();
         }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Textbox tb = new Textbox();
+            if (tb.ShowDialog() == DialogResult.OK)
+            {
+                for (int i = 0; i < tb.input; ++i) richTextBox1.Paste();
+            }
+        }
     }
     public static class publicVariables
     {
