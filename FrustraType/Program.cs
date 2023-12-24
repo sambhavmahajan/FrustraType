@@ -18,8 +18,7 @@ namespace FrustraType
             {
                 foreach(string s in args) {
                     ApplicationConfiguration.Initialize();
-                    Application.Run(new Form1());
-                    Form1.open
+                    Application.Run(new Form1(s));
                 }
             }
         }
