@@ -17,7 +17,7 @@ namespace FrustraType
             {
                 saveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
                 saveFileDialog.Title = "Save Text File";
-                if (!publicVariables.isSaved && publicVariables.Path.Length>0)
+                if (!publicVariables.isSaved && publicVariables.Path.Length==0)
                 {
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
