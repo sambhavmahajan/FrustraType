@@ -17,7 +17,8 @@ namespace FrustraType
             {
                 saveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
                 saveFileDialog.Title = "Save Text File";
-                if (publicVariables.Path.Length > 0) {
+                if (!publicVariables.isSaved && publicVariables.Path.Length>0)
+                {
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         string filePath = saveFileDialog.FileName;
@@ -65,6 +66,7 @@ namespace FrustraType
                     {
                         string fileContent = File.ReadAllText(filePath);
                         richTextBox1.Text = fileContent;
+                        publicVariables.Path = filePath;
                         MessageBox.Show("File opened successfully!", "Opened", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
@@ -72,6 +74,7 @@ namespace FrustraType
                         MessageBox.Show($"Error opening file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
+                    publicVariables.isSaved = true;
                     return true;
                 }
             }
@@ -82,38 +85,52 @@ namespace FrustraType
             if (!publicVariables.isSaved)
             {
                 DialogResult result = MessageBox.Show("Do you want to save the file before creating a new file?", "Save File", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                switch (DialogResult)
+                switch (result)
                 {
                     case DialogResult.Yes:
                         if (save())
                         {
-                            publicVariables.isSaved = false;
+                            publicVariables.isSaved = true;
                             publicVariables.Path = string.Empty;
+                            richTextBox1.Text = "";
 
                         }
                         break;
                     case DialogResult.No:
-                        publicVariables.isSaved = false;
+                        publicVariables.isSaved = true;
                         publicVariables.Path = string.Empty;
+                        richTextBox1.Text = "";
                         break;
                 }
+            }
+            else
+            {
+                publicVariables.isSaved = true;
+                publicVariables.Path = string.Empty;
             }
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(!publicVariables.isSaved)
+            if (!publicVariables.isSaved && publicVariables.Path.Length>0)
             {
-                if(save())
+                if (save())
                 {
                     open();
+                    
                 }
             }
+            else open();
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            publicVariables.isSaved = false;
         }
     }
     public static class publicVariables
     {
-        public static bool isSaved = false;
+        public static bool isSaved = true;
         public static string Path = "";
     }
 }
