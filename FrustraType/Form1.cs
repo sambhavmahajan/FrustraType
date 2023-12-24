@@ -111,7 +111,7 @@ namespace FrustraType
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!publicVariables.isSaved && publicVariables.Path.Length>0)
+            if (!publicVariables.isSaved || publicVariables.Path.Length>0)
             {
                 DialogResult result = MessageBox.Show("Do you want to save the file before opening a new file?", "Save File", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (save())
