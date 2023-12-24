@@ -148,7 +148,15 @@ namespace FrustraType
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+                try
+                {
+                    File.WriteAllText(publicVariables.Path, richTextBox1.Text);
+                    MessageBox.Show("File saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error saving file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
         }
     }
     public static class publicVariables
