@@ -40,7 +40,7 @@ namespace FrustraType
                             return false;
                         }
                     }
-                else
+                    else
                     {
                         try
                         {
@@ -86,7 +86,14 @@ namespace FrustraType
             }
             return false;
         }
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            publicVariables.isSaved = false;
+        }
+
+
+        private void newToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (!publicVariables.isSaved)
             {
@@ -115,7 +122,7 @@ namespace FrustraType
             }
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (!publicVariables.isSaved || publicVariables.Path.Length > 0)
             {
@@ -128,14 +135,14 @@ namespace FrustraType
             else Open();
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-            publicVariables.isSaved = false;
-        }
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             save();
+        }
+
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
     public static class publicVariables
