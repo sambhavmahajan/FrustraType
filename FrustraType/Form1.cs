@@ -281,6 +281,13 @@ namespace FrustraType
             AboutBox1 ab = new AboutBox1();
             ab.ShowDialog();
         }
+
+        private void fontToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FontDialog fd = new FontDialog();
+            fd.Font = richTextBox1.Font;
+            if(fd.ShowDialog() == DialogResult.OK) richTextBox1.Font = fd.Font;
+        }
     }
     public static class publicVariables
     {
