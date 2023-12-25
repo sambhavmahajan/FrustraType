@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+
 namespace FrustraType
 {
     public partial class Form1 : Form
@@ -185,6 +187,30 @@ namespace FrustraType
             if (tb.ShowDialog() == DialogResult.OK)
             {
                 for (int i = 0; i < tb.input; ++i) richTextBox1.Paste();
+            }
+        }
+        private void addTextToSelectedPos(string textToAdd)
+        {
+            int cursorPosition = richTextBox1.SelectionStart;
+            richTextBox1.Text = richTextBox1.Text.Insert(cursorPosition, textToAdd);
+            richTextBox1.SelectionStart = cursorPosition + textToAdd.Length;
+            richTextBox1.Focus();
+        }
+        private void addFormatedNumberToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            Formated_Number formated_Number = new Formated_Number();
+            if (formated_Number.ShowDialog() == DialogResult.OK)
+            {
+                float start = formated_Number.start;
+                float end = formated_Number.end;
+                string format = formated_Number.format;
+                string sep = formated_Number.separator;
+                float interval_width = (end - start) / formated_Number.interval_size;
+                for (float i = start; i < end; i+=interval_width)
+                {
+                    addTextToSelectedPos(format.Replace("{VALUE}",Convert.ToString(i))+sep);
+                }
             }
         }
     }
