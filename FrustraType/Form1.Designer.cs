@@ -261,8 +261,6 @@
             // 
             // fullViewToolStripMenuItem
             // 
-            fullViewToolStripMenuItem.Checked = true;
-            fullViewToolStripMenuItem.CheckState = CheckState.Checked;
             fullViewToolStripMenuItem.Name = "fullViewToolStripMenuItem";
             fullViewToolStripMenuItem.Size = new Size(180, 22);
             fullViewToolStripMenuItem.Text = "Full View";
@@ -278,19 +276,19 @@
             // customizeToolStripMenuItem
             // 
             customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            customizeToolStripMenuItem.Size = new Size(180, 22);
+            customizeToolStripMenuItem.Size = new Size(130, 22);
             customizeToolStripMenuItem.Text = "&Customize";
             // 
             // optionsToolStripMenuItem
             // 
             optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            optionsToolStripMenuItem.Size = new Size(180, 22);
+            optionsToolStripMenuItem.Size = new Size(130, 22);
             optionsToolStripMenuItem.Text = "&Options";
             // 
             // replaceToolStripMenuItem
             // 
             replaceToolStripMenuItem.Name = "replaceToolStripMenuItem";
-            replaceToolStripMenuItem.Size = new Size(180, 22);
+            replaceToolStripMenuItem.Size = new Size(130, 22);
             replaceToolStripMenuItem.Text = "&Replace";
             replaceToolStripMenuItem.Click += replaceToolStripMenuItem_Click;
             // 

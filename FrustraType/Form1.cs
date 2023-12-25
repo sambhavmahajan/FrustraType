@@ -216,20 +216,63 @@ namespace FrustraType
 
         private void replaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Replace replace = new Replace();
+            if (replace.ShowDialog() == DialogResult.OK)
+            {
+                switch(replace.optionSelected)
+                {
+                    case 1:
+                        richTextBox1.Text = richTextBox1.Text.Replace(replace.replaced,replace.replaceWith);
+                        break;
+                    case 2:
+                        for (int i = 0; i < replace.n; i++)
+                        {
+                            int startIndex = richTextBox1.Find(replace.replaced);
+                            if (startIndex != -1)
+                            {
+                                richTextBox1.Select(startIndex, replace.replaced.Length);
+                                richTextBox1.SelectedText = replace.replaceWith;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        break;
+                    case 3:
+                        for (int i = 0; i < replace.n; i++)
+                        {
+                            int startIndex = richTextBox1.Text.LastIndexOf(replace.replaced);
+                            if (startIndex != -1)
+                            {
+                                richTextBox1.Select(startIndex, replace.replaced.Length);
+                                richTextBox1.SelectedText = replace.replaceWith;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        break;
+                    case 4:
+                        break;
+                }
+            }
         }
-
+        private FormWindowState prevFWS = FormWindowState.Normal;
         private void fullViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fullViewToolStripMenuItem.Checked = !fullViewToolStripMenuItem.Checked;
             if(fullViewToolStripMenuItem.Checked)
             {
+                prevFWS = this.WindowState;
                 this.FormBorderStyle = FormBorderStyle.None;
                 this.WindowState = FormWindowState.Maximized;
             }
             else
             {
                 this.FormBorderStyle = FormBorderStyle.Sizable;
+                this.WindowState = prevFWS;
             }
         }
     }
