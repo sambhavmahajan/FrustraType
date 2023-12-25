@@ -198,7 +198,7 @@ namespace FrustraType
         }
         private void addFormatedNumberToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
             Formated_Number formated_Number = new Formated_Number();
             if (formated_Number.ShowDialog() == DialogResult.OK)
             {
@@ -207,10 +207,29 @@ namespace FrustraType
                 string format = formated_Number.format;
                 string sep = formated_Number.separator;
                 float interval_width = (end - start) / formated_Number.interval_size;
-                for (float i = start; i < end; i+=interval_width)
+                for (float i = start; i < end; i += interval_width)
                 {
-                    addTextToSelectedPos(format.Replace("{VALUE}",Convert.ToString(i))+sep);
+                    addTextToSelectedPos(format.Replace("{VALUE}", Convert.ToString(i)) + sep);
                 }
+            }
+        }
+
+        private void replaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fullViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fullViewToolStripMenuItem.Checked = !fullViewToolStripMenuItem.Checked;
+            if(fullViewToolStripMenuItem.Checked)
+            {
+                this.FormBorderStyle = FormBorderStyle.None;
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.FormBorderStyle = FormBorderStyle.Sizable;
             }
         }
     }
