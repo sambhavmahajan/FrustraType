@@ -219,10 +219,10 @@ namespace FrustraType
             Replace replace = new Replace();
             if (replace.ShowDialog() == DialogResult.OK)
             {
-                switch(replace.optionSelected)
+                switch (replace.optionSelected)
                 {
                     case 1:
-                        richTextBox1.Text = richTextBox1.Text.Replace(replace.replaced,replace.replaceWith);
+                        richTextBox1.Text = richTextBox1.Text.Replace(replace.replaced, replace.replaceWith);
                         break;
                     case 2:
                         for (int i = 0; i < replace.n; i++)
@@ -263,7 +263,7 @@ namespace FrustraType
         private void fullViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fullViewToolStripMenuItem.Checked = !fullViewToolStripMenuItem.Checked;
-            if(fullViewToolStripMenuItem.Checked)
+            if (fullViewToolStripMenuItem.Checked)
             {
                 prevFWS = this.WindowState;
                 this.FormBorderStyle = FormBorderStyle.None;
@@ -274,6 +274,12 @@ namespace FrustraType
                 this.FormBorderStyle = FormBorderStyle.Sizable;
                 this.WindowState = prevFWS;
             }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox1 ab = new AboutBox1();
+            ab.ShowDialog();
         }
     }
     public static class publicVariables

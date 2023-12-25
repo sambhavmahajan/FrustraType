@@ -6,6 +6,11 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Title>FrustraType</Title>
+    <Company>Sambhav Mahajan</Company>
+    <Copyright>© 2023 Sambhav Mahajan. All Rights Reserved.</Copyright>
+    <PackageProjectUrl>https://github.com/sambhavmahajan/FrustraType</PackageProjectUrl>
+    <Description>A simple TextEditor</Description>
   </PropertyGroup>
 
 </Project>
