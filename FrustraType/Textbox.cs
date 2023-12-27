@@ -17,7 +17,12 @@ namespace FrustraType
         {
             InitializeComponent();
         }
-
+        public Textbox(string _title, string placeHolder)
+        {
+            InitializeComponent();
+            this.Text = _title;
+            textBox1.PlaceholderText = placeHolder;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;

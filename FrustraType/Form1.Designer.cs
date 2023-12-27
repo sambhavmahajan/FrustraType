@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem1 = new ToolStripMenuItem();
@@ -53,12 +54,17 @@
             addFormatedNumberToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             selectAllToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator2 = new ToolStripSeparator();
+            fontToolStripMenuItem = new ToolStripMenuItem();
             ViewStripMenuItem = new ToolStripMenuItem();
             fullViewToolStripMenuItem = new ToolStripMenuItem();
             toolsToolStripMenuItem = new ToolStripMenuItem();
             customizeToolStripMenuItem = new ToolStripMenuItem();
             optionsToolStripMenuItem = new ToolStripMenuItem();
             replaceToolStripMenuItem = new ToolStripMenuItem();
+            timerToolStripMenuItem = new ToolStripMenuItem();
+            startToolStripMenuItem = new ToolStripMenuItem();
+            stopToolStripMenuItem = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
             contentsToolStripMenuItem = new ToolStripMenuItem();
             indexToolStripMenuItem = new ToolStripMenuItem();
@@ -67,9 +73,11 @@
             aboutToolStripMenuItem = new ToolStripMenuItem();
             richTextBox1 = new RichTextBox();
             statusStrip1 = new StatusStrip();
-            fontToolStripMenuItem = new ToolStripMenuItem();
-            toolStripSeparator2 = new ToolStripSeparator();
+            TimerLabel = new ToolStripStatusLabel();
+            TimerProgressBar = new ToolStripProgressBar();
+            timer1 = new System.Windows.Forms.Timer(components);
             menuStrip1.SuspendLayout();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -254,6 +262,18 @@
             selectAllToolStripMenuItem.Text = "Select &All";
             selectAllToolStripMenuItem.Click += selectAllToolStripMenuItem_Click;
             // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(219, 6);
+            // 
+            // fontToolStripMenuItem
+            // 
+            fontToolStripMenuItem.Name = "fontToolStripMenuItem";
+            fontToolStripMenuItem.Size = new Size(222, 22);
+            fontToolStripMenuItem.Text = "Font";
+            fontToolStripMenuItem.Click += fontToolStripMenuItem_Click;
+            // 
             // ViewStripMenuItem
             // 
             ViewStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { fullViewToolStripMenuItem });
@@ -264,13 +284,13 @@
             // fullViewToolStripMenuItem
             // 
             fullViewToolStripMenuItem.Name = "fullViewToolStripMenuItem";
-            fullViewToolStripMenuItem.Size = new Size(180, 22);
+            fullViewToolStripMenuItem.Size = new Size(121, 22);
             fullViewToolStripMenuItem.Text = "Full View";
             fullViewToolStripMenuItem.Click += fullViewToolStripMenuItem_Click;
             // 
             // toolsToolStripMenuItem
             // 
-            toolsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { customizeToolStripMenuItem, optionsToolStripMenuItem, replaceToolStripMenuItem });
+            toolsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { customizeToolStripMenuItem, optionsToolStripMenuItem, replaceToolStripMenuItem, timerToolStripMenuItem });
             toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             toolsToolStripMenuItem.Size = new Size(46, 20);
             toolsToolStripMenuItem.Text = "&Tools";
@@ -293,6 +313,28 @@
             replaceToolStripMenuItem.Size = new Size(180, 22);
             replaceToolStripMenuItem.Text = "&Replace";
             replaceToolStripMenuItem.Click += replaceToolStripMenuItem_Click;
+            // 
+            // timerToolStripMenuItem
+            // 
+            timerToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { startToolStripMenuItem, stopToolStripMenuItem });
+            timerToolStripMenuItem.Name = "timerToolStripMenuItem";
+            timerToolStripMenuItem.Size = new Size(180, 22);
+            timerToolStripMenuItem.Text = "&Timer";
+            // 
+            // startToolStripMenuItem
+            // 
+            startToolStripMenuItem.Name = "startToolStripMenuItem";
+            startToolStripMenuItem.Size = new Size(180, 22);
+            startToolStripMenuItem.Text = "Start";
+            startToolStripMenuItem.Click += startToolStripMenuItem_Click;
+            // 
+            // stopToolStripMenuItem
+            // 
+            stopToolStripMenuItem.Enabled = false;
+            stopToolStripMenuItem.Name = "stopToolStripMenuItem";
+            stopToolStripMenuItem.Size = new Size(180, 22);
+            stopToolStripMenuItem.Text = "Stop";
+            stopToolStripMenuItem.Click += stopToolStripMenuItem_Click;
             // 
             // helpToolStripMenuItem
             // 
@@ -343,6 +385,7 @@
             // 
             // statusStrip1
             // 
+            statusStrip1.Items.AddRange(new ToolStripItem[] { TimerLabel, TimerProgressBar });
             statusStrip1.Location = new Point(0, 428);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.RenderMode = ToolStripRenderMode.Professional;
@@ -350,17 +393,21 @@
             statusStrip1.TabIndex = 2;
             statusStrip1.Text = "statusStrip1";
             // 
-            // fontToolStripMenuItem
+            // TimerLabel
             // 
-            fontToolStripMenuItem.Name = "fontToolStripMenuItem";
-            fontToolStripMenuItem.Size = new Size(222, 22);
-            fontToolStripMenuItem.Text = "Font";
-            fontToolStripMenuItem.Click += fontToolStripMenuItem_Click;
+            TimerLabel.Name = "TimerLabel";
+            TimerLabel.Size = new Size(33, 17);
+            TimerLabel.Text = "0 sec";
             // 
-            // toolStripSeparator2
+            // TimerProgressBar
             // 
-            toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(219, 6);
+            TimerProgressBar.Name = "TimerProgressBar";
+            TimerProgressBar.Size = new Size(100, 16);
+            // 
+            // timer1
+            // 
+            timer1.Interval = 1000;
+            timer1.Tick += timer1_Tick;
             // 
             // Form1
             // 
@@ -375,6 +422,8 @@
             Text = "FrustraType";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -421,5 +470,11 @@
         private ToolStripMenuItem fullViewToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem fontToolStripMenuItem;
+        private ToolStripStatusLabel TimerLabel;
+        private ToolStripProgressBar TimerProgressBar;
+        private ToolStripMenuItem timerToolStripMenuItem;
+        private System.Windows.Forms.Timer timer1;
+        private ToolStripMenuItem startToolStripMenuItem;
+        private ToolStripMenuItem stopToolStripMenuItem;
     }
 }

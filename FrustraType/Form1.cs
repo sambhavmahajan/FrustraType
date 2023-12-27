@@ -286,7 +286,58 @@ namespace FrustraType
         {
             FontDialog fd = new FontDialog();
             fd.Font = richTextBox1.Font;
-            if(fd.ShowDialog() == DialogResult.OK) richTextBox1.Font = fd.Font;
+            if (fd.ShowDialog() == DialogResult.OK) richTextBox1.Font = fd.Font;
+        }
+        private int timelapsed = 0, totalTime = 0;
+
+        private void startToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            startToolStripMenuItem.Enabled = false;
+            stopToolStripMenuItem.Enabled = true;
+            Textbox tb = new Textbox("Timer", "Seconds");
+            if (tb.ShowDialog() == DialogResult.OK)
+            {
+                totalTime = tb.input;
+                timer1.Start();
+            }
+        }
+
+        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TimerExpired();
+        }
+        private void TimerExpired()
+        {
+            for (int i = 0; i < 3; ++i)
+            {
+                Console.Beep();
+            }
+
+            timer1.Stop();
+            totalTime = timelapsed = 0;
+            startToolStripMenuItem.Enabled = true;
+            stopToolStripMenuItem.Enabled = false;
+            TimerLabel.Text = "0 sec";
+            TimerProgressBar.Value = 0;
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (timelapsed > totalTime)
+            {
+                TimerExpired();
+                MessageBox.Show("Timer Ended","Timer",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int t = (100 * timelapsed) / totalTime;
+
+            if (t < 101)
+            {
+                TimerProgressBar.Value = t;
+            }
+
+            TimerLabel.Text = timelapsed.ToString() + " sec";
+            timelapsed++;
         }
     }
     public static class publicVariables
